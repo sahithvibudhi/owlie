@@ -19,6 +19,9 @@ function statuscheck() {
     
  }
 
+ function pageswitch(){
+    chrome.browserAction.setPopup({popup: "/pages/dashboard/index.html"});
+ }
  }
 
  window.onload = onpageload;
