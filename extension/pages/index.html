@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/common.css">
+    </head>
+    <body style="width: 300px;">
+        <div id="dashboard-page" class="d-none">
+            <input class="border-inputs" type="text" placeholder="Friend's User ID"></input>
+            <button >Add</button>
+            <div class="middle">
+                <div><span>Youtube</span>
+                <span><label id="ytcheck" class="switch">
+                  <input id="youtube-cb" type="checkbox" checked>
+                  <span class="slider"></span>
+                </label></span></div>
+                <div><span>Spotify</span>
+                  <span><label id="spcheck" class="switch">
+                    <input id="spotify-cb" type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label></span></div>
+                 <div><span>Netflix</span>
+                  <span><label id="nfcheck" class="switch">
+                    <input id="netflix-cb" type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label></span></div>
+            </div>
+        </div>
+        <div id="loading-page">
+            Loading.. hang tight!
+        </div>
+        <div id="register-page" class="d-none">
+            <input type="text" class="border-inputs" placeholder="Username"></input>
+            <input type="text" class="border-inputs" placeholder="Name"></input>
+            <button id="letsgo-button" onclick="pageswitch()">Let's Go</button>
+        </div>
+        <script type="text/javascript" src="scripts/router.js"></script>
+        <script type="text/javascript" src="scripts/switchonoff.js"></script>
+    </body>
+</html>

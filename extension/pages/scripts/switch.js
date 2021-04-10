@@ -1,9 +1,7 @@
-function onpageload(){
-
 document.getElementById("ytcheck").addEventListener("click", statuscheck);
 document.getElementById("spcheck").addEventListener("click", statuscheck);
 document.getElementById("nfcheck").addEventListener("click", statuscheck);
-
+    
 function statuscheck() {
 
     let statusdict = {
@@ -16,12 +14,5 @@ function statuscheck() {
     }
 
     console.log(statusdict);
-    
- }
 
- function pageswitch(){
-    chrome.browserAction.setPopup({popup: "/pages/dashboard/index.html"});
- }
- }
-
- window.onload = onpageload;
+}
