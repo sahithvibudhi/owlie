@@ -64,6 +64,12 @@ input:checked + .slider:before {
     padding: 10px;
 }
 
-.on-right{
-    float: right;
+.border-inputs{
+    margin-left: 20px; 
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+#letsgobutton{
+    margin-left: 10px;
 }
