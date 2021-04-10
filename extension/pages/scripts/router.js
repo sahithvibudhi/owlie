@@ -16,12 +16,14 @@ chrome.storage.local.get(['token'], function(result) {
           };
           
         $.ajax(me).done(function (response) {
-            chrome.storage.local.set({ token: response.token, username: response.username, name: response.name }, function() {
-                showPage('dashboard-page');
+            chrome.storage.local.set({ token: result.token, username: response.username, name: response.name }, function() {
                 window.username = response.username;
                 window.name = response.name;
+                window.token = result.token;
+                showPage('dashboard-page');
+                settingsLikeServer();
+                greet();
             });
-            showPage('dashboard-page');
         }).fail(function() {
             showPage('register-page');
         });
