@@ -1,11 +1,14 @@
 {
     "name": "Owlie",
     "description": "A universal suggestion engine. find content based on what your friends like",
+    "content_scripts":[
+      {
+        "js":["background-workers/injector.js"],
+        "matches":["*://*.medium.com/*","*://www.youtube.com/*","*://*.netflix.com/*","*://*.spotify.com/*"]
+      }
+    ],
     "version": "1.0",
     "manifest_version": 3,
-    "background": {
-      "service_worker": "background-workers/injector.js"
-    },
     "permissions": ["storage"],
     "action": {
       "default_popup": "pages/dashboard/index.html",
