@@ -1,5 +1,7 @@
 const ENDPOINT = 'http://localhost:3000';
 
+const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+
 function ajax({
     endpoint,
     method,
@@ -67,8 +69,16 @@ function checkNewURL() {
         method: 'GET',
         success: function(data) {
             const users = JSON.parse(data);
-            let html = '';
-            users.map(user => html += `<div><a href="${user.location}">${user.name}</a></div>`);
+            let html = `<style>.owlie-hide {
+                display: none;
+              }
+              .owlie-div:hover + .owlie-hide {
+                display: block;
+                color: #ddd;
+              }</style>`;
+            users.map(user => html += `<div><a href="${user.location}" class='owlie-div'><svg style="color:${genRanHex(6)};" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          </svg></a><div class='owlie-hide' style='position:fixed;right:10px;background-color:white;border: 1px solid #eee;padding: 2px;'>${user.name}</div></div>`);
             const div = document.createElement('div');
             div.innerHTML = html;
             div.style.position = 'fixed';
@@ -77,9 +87,11 @@ function checkNewURL() {
             div.style['z-index'] = '20';
             div.style.border = '1px solid #eee';
             div.style.padding = '8px';
-            div.style['font-size'] = '20px';
+            div.style['font-size'] = '16px';
+            div.style['background-color'] = 'white';
             const body = document.getElementsByTagName('body')[0];
             body.appendChild(div);
         }
     });
  }
+
