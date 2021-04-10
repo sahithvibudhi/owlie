@@ -43,7 +43,12 @@ function checkNewURL() {
 }
  function onNewURLDiscover() {
     //alert("hello")
-    console.log("found new path "+urlFound)
+    console.log("found new path "+urlFound);
+    saveActivity();
+    showFriends();
+ }
+
+ function saveActivity() {
     ajax({
         endpoint: '/activity',
         method: 'POST',
@@ -52,6 +57,29 @@ function checkNewURL() {
         },
         success: function(data) {
             console.log(data);
+        }
+    });
+ }
+
+ function showFriends() {
+    ajax({
+        endpoint: `/feed?location=${urlFound}`,
+        method: 'GET',
+        success: function(data) {
+            const users = JSON.parse(data);
+            let html = '';
+            users.map(user => html += `<div><a href="${user.location}">${user.name}</a></div>`);
+            const div = document.createElement('div');
+            div.innerHTML = html;
+            div.style.position = 'fixed';
+            div.style.top = '40%';
+            div.style.right = '0px';
+            div.style['z-index'] = '20';
+            div.style.border = '1px solid #eee';
+            div.style.padding = '8px';
+            div.style['font-size'] = '20px';
+            const body = document.getElementsByTagName('body')[0];
+            body.appendChild(div);
         }
     });
  }

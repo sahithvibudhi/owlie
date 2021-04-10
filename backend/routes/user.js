@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Follow = require('../models/follow');
+const { domain_from_url } = require("../helpers/url");
 
 module.exports = {
     me: async (req, res) => {
@@ -53,6 +54,17 @@ module.exports = {
         const info = await User.find({
             username: { $in: follwingUserNameList}
         });
-        res.json(info);
+        let feed = info;
+        const {location} = req.query;
+        if (location) {
+            const domain = domain_from_url(location);
+            const burst = domain.split('.');
+            if (burst.length == 0 || !domain) return res.json({
+                err: 'something is wrong with the URL'
+            });
+            const app = burst[0];
+            feed = info.filter(user => user.app == app);
+        }
+        res.json(feed);
     }
 }

@@ -1,17 +1,7 @@
-const Activity = require("../models/activity")
-const User = require("../models/user")
+const Activity = require("../models/activity");
+const User = require("../models/user");
+const { domain_from_url } = require("../helpers/url");
 
-function domain_from_url(url) {
-    var result
-    var match
-    if (match = url.match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n\?\=]+)/im)) {
-        result = match[1]
-        if (match = result.match(/^[^\.]+\.(.+\..+)$/)) {
-            result = match[1]
-        }
-    }
-    return result
-}
 
 module.exports = {
     register: async (req, res) => {
