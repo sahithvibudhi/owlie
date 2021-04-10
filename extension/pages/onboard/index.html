@@ -9,6 +9,11 @@
         <input type="text" class="border-inputs" placeholder="Username"></input>
         <input type="text" class="border-inputs" placeholder="Name"></input>
         <button id="letsgo-button" onclick="pageswitch()">Let's Go</button>
-        
+
+        <script>
+            function pageswitch(){
+                chrome.browserAction.setPopup({popup: "/pages/dashboard/index.html"});
+            }
+        </script>
     </body>
 </html>
