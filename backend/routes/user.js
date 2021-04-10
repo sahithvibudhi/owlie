@@ -28,9 +28,14 @@ module.exports = {
         const {username} = res.locals;
         const {follow} = req.body;
         const count = await Follow.count({ username, follow });
-        console.log(count);
+        const userExist = await User.count({username: follow});
+        if (userExist == 0) {
+            return res.json({
+                msg: `${follow} does not exist`
+            });
+        }
         if (count != 0) {
-            return res.status(500).json({
+            return res.json({
                 msg: 'you already follow this user!'
             });
         }
@@ -39,7 +44,7 @@ module.exports = {
             follow
         });
         await user.save();
-        res.json({ msg: 'ok' });
+        res.json({ msg: `You are now following ${follow}` });
     },
     feed: async (req, res) => {
         const {username} = res.locals;

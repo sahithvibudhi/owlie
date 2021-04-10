@@ -44,3 +44,20 @@ function settingsLikeServer() {
     });
 }
 
+$('#add-frnd').click(function(){
+    const follow = $('#frnd-uname').val();
+    let request = {
+        "url": `${ENDPOINT}/follow`,
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "token": window.token
+        },
+        data: JSON.stringify({follow})
+    }
+    $.ajax(request).done(function(response){
+        $('#frnd-add-msg').html(response.msg);
+    }).fail(function(){
+        $('#frnd-add-msg').html('Oops! something went wrong');
+    });
+})
