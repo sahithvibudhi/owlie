@@ -4,7 +4,7 @@
     "content_scripts":[
       {
         "js":["background-workers/injector.js"],
-        "matches":["*://medium.com/","*://www.youtube.com/","*://www.netflix.com/","*://www.spotify.com/us/"]
+        "matches":["*://*.medium.com/*","*://www.youtube.com/*","*://*.netflix.com/*","*://*.spotify.com/*"]
       }
     ],
     "version": "1.0",
