@@ -1,7 +1,7 @@
 document.getElementById("ytcheck").addEventListener("click", statuscheck);
 document.getElementById("spcheck").addEventListener("click", statuscheck);
 document.getElementById("nfcheck").addEventListener("click", statuscheck);
-document.getElementById("nfcheck").addEventListener("click", statuscheck);
+document.getElementById("mdcheck").addEventListener("click", statuscheck);
     
 function statuscheck(e) {
     let settings = {
