@@ -1,7 +1,7 @@
 $('#register-btn').click(function(){
     let username = $('#username-input').val();
     let name = $('#name-input').val();
-    var settings = {
+    var auth = {
         "url": `${ENDPOINT}/user/register`,
         "method": "POST",
         "headers": {
@@ -10,9 +10,11 @@ $('#register-btn').click(function(){
         "data": JSON.stringify({ username, name }),
       };
       
-    $.ajax(settings).done(function (response) {
-        chrome.storage.local.set({ token: response.token }, function() {
+    $.ajax(auth).done(function (response) {
+        chrome.storage.local.set({ token: response.token, username, name }, function() {
             showPage('dashboard-page');
+            window.username = username;
+            window.name = name;
         });
     });
 });

@@ -5,9 +5,26 @@ function showPage(name) {
 }
 
 chrome.storage.local.get(['token'], function(result) {
-    console.log(result);
     if (result && result.token) {
-        showPage('dashboard-page');
+        var me = {
+            "url": `${ENDPOINT}/user/me`,
+            "method": "GET",
+            "headers": {
+              "Content-Type": "application/json",
+              "token": result.token
+            },
+          };
+          
+        $.ajax(me).done(function (response) {
+            chrome.storage.local.set({ token: response.token, username: response.username, name: response.name }, function() {
+                showPage('dashboard-page');
+                window.username = response.username;
+                window.name = response.name;
+            });
+            showPage('dashboard-page');
+        }).fail(function() {
+            showPage('register-page');
+        });
     } else {
         showPage('register-page');
     }
