@@ -15,15 +15,21 @@ module.exports = {
             err: 'something is wrong with the URL'
         });
         const app = burst[0];
+        const user = await User.findOne({ username });
+        if (user.settings && !user.settings[app]) {
+            return res.json({
+                err: `${username} turned off tracking for ${app}`
+            });
+        }
         const activity = new Activity({
             username,
             app,
             location
         });
         await activity.save();
-        const user = await User.findOne({username});
         user.location = location;
         user.app = app;
+        user.updated = new Date();
         await user.save();
         res.json({app, location, username});
     }
