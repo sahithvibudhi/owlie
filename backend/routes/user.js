@@ -65,7 +65,6 @@ module.exports = {
             const app = burst[0];
             feed = info.filter(user => user.app == app);
         }
-        feed = feed.filter(user => user.settings && user.app && user.settings[user.app]);
         res.json(feed);
     }
 }
