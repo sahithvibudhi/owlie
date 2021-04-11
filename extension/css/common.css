@@ -76,6 +76,7 @@ input:checked + .slider:before {
   text-align: center;
   margin-top: 40px;
   margin-bottom: 50px;
+  margin-right: 400px;
 }
 
 .onright{
@@ -86,4 +87,20 @@ input:checked + .slider:before {
   margin: auto;
   width: 50%;
   padding: 10px;
+}
+
+#fire-image{
+  margin-bottom: 30px;
+}
+
+.green{
+  color: green;
+}
+
+.rightalign{
+  float: right;
+}
+
+.red{
+  color: red;
 }
