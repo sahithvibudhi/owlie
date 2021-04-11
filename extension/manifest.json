@@ -24,5 +24,8 @@
         "48": "/images/owl.png",
         "128": "/images/owl.png"
       }
+    },
+    "chrome_url_overrides": {
+      "newtab": "/pages/newtab/index.html"
     }
   }
