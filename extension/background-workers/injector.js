@@ -1,4 +1,5 @@
-const ENDPOINT = 'http://localhost:3000';
+// const ENDPOINT = 'http://localhost:3000';
+const ENDPOINT = 'https://owlie-backend.herokuapp.com';
 
 const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 
