@@ -37,17 +37,19 @@ chrome.storage.local.get(['token'], function(result) {
     }
 });
 
+setInterval(showFriends, 10000);
+
 function checkNewURL() {
     if (window.location.href != urlFound) {
         urlFound = window.location.href;
         onNewURLDiscover();
+        showFriends();
     }
 }
  function onNewURLDiscover() {
     //alert("hello")
     console.log("found new path "+urlFound);
     saveActivity();
-    showFriends();
  }
 
  function saveActivity() {
@@ -62,6 +64,11 @@ function checkNewURL() {
         }
     });
  }
+
+ function removeElement(id) {
+    var elem = document.getElementById(id);
+    return elem && elem.parentNode && elem.parentNode.removeChild(elem);
+}
 
  function showFriends() {
     ajax({
@@ -81,6 +88,7 @@ function checkNewURL() {
           </svg></a><div class='owlie-hide' style='position:fixed;right:10px;background-color:white;border: 1px solid #eee;padding: 2px;'>${user.name}</div></div>`);
             const div = document.createElement('div');
             div.innerHTML = html;
+            div.id = 'owlie-active-container';
             div.style.position = 'fixed';
             div.style.top = '40%';
             div.style.right = '0px';
@@ -90,6 +98,7 @@ function checkNewURL() {
             div.style['font-size'] = '16px';
             div.style['background-color'] = 'white';
             const body = document.getElementsByTagName('body')[0];
+            removeElement('owlie-active-container');
             body.appendChild(div);
         }
     });
