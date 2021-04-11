@@ -29,6 +29,7 @@ module.exports = {
         await activity.save();
         user.location = location;
         user.app = app;
+        user.updated = new Date();
         await user.save();
         res.json({app, location, username});
     }
